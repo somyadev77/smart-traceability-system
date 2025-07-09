@@ -1,0 +1,628 @@
+{
+  "system": {
+    "name": "Smart Product Traceability System",
+    "version": "2.0.0",
+    "environment": "development",
+    "log_level": "INFO",
+    "data_dir": "./data"
+  },
+  "camera": {
+    "enabled": true,
+    "source": 0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "flip_horizontal": false,
+    "flip_vertical": false,
+    "brightness": 0,
+    "contrast": 0,
+    "saturation": 64,
+    "hue": 0,
+    "gain": 0,
+    "exposure": -6,
+    "white_balance": 4000,
+    "auto_exposure": 1,
+    "auto_white_balance": true,
+    "auto_focus": true,
+    "focus": 0,
+    "zoom": 100,
+    "pan": 0,
+    "tilt": 0,
+    "rotation": 0,
+    "region_of_interest": {
+      "enabled": false,
+      "x": 0,
+      "y": 0,
+      "width": 1.0,
+      "height": 1.0
+    },
+    "save_path": "./data/captures",
+    "save_format": "jpg",
+    "save_quality": 95,
+    "save_interval": 0,
+    "max_saves": 1000,
+    "overwrite": false,
+    "timestamp_format": "%Y%m%d_%H%M%S",
+    "prefix": "capture_",
+    "suffix": ""
+  },
+  "label_printer": {
+    "enabled": true,
+    "type": "file",
+    "file": {
+      "enabled": true,
+      "save_path": "./data/labels",
+      "format": "png",
+      "dpi": 300,
+      "prefix": "label_",
+      "suffix": "",
+      "timestamp_format": "%Y%m%d_%H%M%S"
+    },
+    "network": {
+      "enabled": false,
+      "host": "192.168.1.100",
+      "port": 9100,
+      "timeout": 5
+    },
+    "serial": {
+      "enabled": false,
+      "port": "COM3",
+      "baudrate": 9600,
+      "bytesize": 8,
+      "parity": "N",
+      "stopbits": 1,
+      "timeout": 5,
+      "xonxoff": false,
+      "rtscts": false,
+      "dsrdtr": false,
+      "write_timeout": 5
+    },
+    "usb": {
+      "enabled": false,
+      "vendor_id": 0x04b8,
+      "product_id": 0x0202,
+      "in_ep": 0x81,
+      "out_ep": 0x03
+    },
+    "cups": {
+      "enabled": false,
+      "printer_name": "Zebra_LP2844",
+      "options": {
+        "media": "Custom.62x100mm",
+        "scaling": 100,
+        "orientation-requested": 3
+      }
+    },
+    "zpl": {
+      "enabled": false,
+      "template": "^XA\n^FO50,50^A0N,50,50^FD{product_id}^FS\n^XZ"
+    }
+  },
+  "conveyor": {
+    "enabled": true,
+    "type": "simulated",
+    "speed": 100,
+    "direction": "forward",
+    "acceleration": 100,
+    "deceleration": 100,
+    "jerk": 100,
+    "max_speed": 1000,
+    "min_speed": 1,
+    "homing_speed": 10,
+    "homing_direction": "reverse",
+    "homing_offset": 0,
+    "homing_switch": 0,
+    "homing_switch_active_low": true,
+    "homing_switch_debounce": 100,
+    "homing_switch_pullup": true,
+    "homing_timeout": 10000,
+    "move_timeout": 5000,
+    "stop_on_error": true,
+    "auto_home_on_start": false,
+    "auto_home_on_error": true,
+    "auto_home_on_timeout": true,
+    "auto_home_interval": 0,
+    "auto_home_count": 0,
+    "auto_home_max_attempts": 3,
+    "auto_home_retry_delay": 1000,
+    "auto_home_retry_backoff": 1.5,
+    "auto_home_retry_max_delay": 10000,
+    "auto_home_retry_jitter": 0.1,
+    "auto_home_retry_max_jitter": 1000,
+    "auto_home_retry_max_elapsed_time": 0,
+    "auto_home_retry_max_interval": 0,
+    "auto_home_retry_multiplier": 1.5,
+    "auto_home_retry_randomization_factor": 0.5
+  },
+  "reject_mechanism": {
+    "enabled": true,
+    "type": "simulated",
+    "gpio_pin": 17,
+    "activation_time": 0.5,
+    "active_low": true,
+    "pull_up_down": "up",
+    "initial_state": false,
+    "bounce_time": 0.1,
+    "edge_detection": "rising",
+    "hold_time": 0.5,
+    "debounce_time": 0.1,
+    "max_retries": 3,
+    "retry_delay": 0.5,
+    "timeout": 5.0
+  },
+  "database": {
+    "path": "./data/traceability.db",
+    "backup": {
+      "enabled": true,
+      "path": "./data/backups",
+      "max_backups": 30,
+      "backup_interval": 86400,
+      "backup_on_start": true,
+      "backup_on_shutdown": true,
+      "compression": "gzip",
+      "encryption": {
+        "enabled": false,
+        "algorithm": "AES-256-CBC",
+        "key": "",
+        "iv": ""
+      },
+      "retention": {
+        "days": 30,
+        "weeks": 4,
+        "months": 12,
+        "years": 1
+      }
+    },
+    "auto_vacuum": true,
+    "cache_size": -2000,
+    "foreign_keys": true,
+    "journal_mode": "WAL",
+    "synchronous": "NORMAL",
+    "temp_store": "MEMORY",
+    "threads": 4,
+    "timeout": 30,
+    "busy_timeout": 30000
+  },
+  "logging": {
+    "console": {
+      "enabled": true,
+      "level": "INFO",
+      "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+      "datefmt": "%Y-%m-%d %H:%M:%S"
+    },
+    "file": {
+      "enabled": true,
+      "level": "DEBUG",
+      "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+      "datefmt": "%Y-%m-%d %H:%M:%S",
+      "filename": "./data/logs/traceability.log",
+      "max_bytes": 10485760,
+      "backup_count": 5,
+      "encoding": "utf-8",
+      "delay": false
+    },
+    "syslog": {
+      "enabled": false,
+      "level": "WARNING",
+      "format": "%(name)s[%(process)d]: %(levelname)s - %(message)s",
+      "address": "/dev/log",
+      "facility": "user"
+    },
+    "email": {
+      "enabled": false,
+      "level": "ERROR",
+      "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+      "datefmt": "%Y-%m-%d %H:%M:%S",
+      "toaddrs": ["admin@example.com"],
+      "subject": "Smart Traceability System Error",
+      "credentials": {
+        "server": "smtp.example.com",
+        "port": 587,
+        "username": "user@example.com",
+        "password": "password",
+        "use_tls": true,
+        "use_ssl": false,
+        "timeout": 30
+      }
+    }
+  },
+  "network": {
+    "http": {
+      "enabled": true,
+      "host": "0.0.0.0",
+      "port": 5000,
+      "debug": false,
+      "threaded": true,
+      "ssl_context": null,
+      "cors": {
+        "enabled": true,
+        "resources": {
+          "*": {
+            "origins": ["*"],
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+            "allow_headers": ["Content-Type", "Authorization"],
+            "expose_headers": [],
+            "supports_credentials": false,
+            "max_age": 600,
+            "send_wildcard": false,
+            "automatic_options": true
+          }
+        }
+      },
+      "rate_limiting": {
+        "enabled": true,
+        "default": "1000 per day",
+        "per_method": true,
+        "strategy": "fixed-window",
+        "storage_uri": "memory://",
+        "headers": {
+          "enabled": true,
+          "header_mapping": {
+            "x-ratelimit-limit": "X-RateLimit-Limit",
+            "x-ratelimit-remaining": "X-RateLimit-Remaining",
+            "x-ratelimit-reset": "X-RateLimit-Reset",
+            "retry-after": "Retry-After"
+          },
+          "retry_after": "http-date"
+        }
+      },
+      "authentication": {
+        "enabled": false,
+        "type": "jwt",
+        "jwt": {
+          "secret_key": "your-secret-key-here",
+          "algorithm": "HS256",
+          "token_expiration": 3600,
+          "refresh_token_expiration": 2592000,
+          "token_location": ["headers", "cookies", "json", "query_string"],
+          "jwt_headers": ["X-API-Key", "Authorization"],
+          "jwt_cookies": ["access_token"],
+          "jwt_query_string": "token",
+          "jwt_json": "access_token",
+          "jwt_refresh_json": "refresh_token",
+          "jwt_claims_to_user_claims": {},
+          "jwt_decode_algorithms": ["HS256"],
+          "jwt_encode_audience": null,
+          "jwt_decode_audience": null,
+          "jwt_decode_issuer": null,
+          "jwt_decode_leeway": 0,
+          "jwt_verify_aud": false,
+          "jwt_verify_exp": true,
+          "jwt_verify_iat": true,
+          "jwt_verify_iss": false,
+          "jwt_verify_nbf": true
+        },
+        "basic_auth": {
+          "users": {
+            "admin": "password123"
+          },
+          "realm": "Authentication Required"
+        }
+      }
+    },
+    "websocket": {
+      "enabled": true,
+      "host": "0.0.0.0",
+      "port": 8765,
+      "ping_interval": 25,
+      "ping_timeout": 5,
+      "max_message_size": 10000000,
+      "max_queue": 32,
+      "cors_allowed_origins": ["*"],
+      "compression": true,
+      "max_connections": 100,
+      "reconnect_timeout": 5
+    },
+    "mqtt": {
+      "enabled": false,
+      "host": "localhost",
+      "port": 1883,
+      "username": "",
+      "password": "",
+      "client_id": "smart_traceability_system",
+      "keepalive": 60,
+      "tls": {
+        "enabled": false,
+        "ca_certs": "",
+        "certfile": "",
+        "keyfile": "",
+        "cert_reqs": "CERT_REQUIRED",
+        "tls_version": "tlsv1.2",
+        "ciphers": None
+      },
+      "topics": {
+        "status": "smart_traceability/status",
+        "commands": "smart_traceability/commands",
+        "events": "smart_traceability/events",
+        "telemetry": "smart_traceability/telemetry"
+      },
+      "qos": 1,
+      "retain": false,
+      "clean_session": true,
+      "transport": "tcp"
+    }
+  },
+  "ai": {
+    "model_path": "./data/models/default_model.h5",
+    "confidence_threshold": 0.7,
+    "iou_threshold": 0.5,
+    "max_detections": 100,
+    "classes": ["defect", "scratch", "crack", "dent", "discoloration"],
+    "input_shape": [300, 300, 3],
+    "preprocessing": {
+      "resize": [300, 300],
+      "normalize": true,
+      "mean": [0.485, 0.456, 0.406],
+      "std": [0.229, 0.224, 0.225],
+      "swap_rb": true,
+      "crop": false,
+      "flip": false,
+      "blur": false,
+      "sharpen": false,
+      "equalize_hist": false,
+      "clahe": false,
+      "denoise": false,
+      "auto_contrast": false
+    },
+    "postprocessing": {
+      "nms": true,
+      "nms_threshold": 0.5,
+      "score_converter": "SIGMOID",
+      "localization_loss_weight": 1.0,
+      "classification_loss_weight": 1.0,
+      "hard_example_miner": {
+        "enabled": true,
+        "num_hard_examples": 3000,
+        "iou_threshold": 0.7,
+        "loss_type": "both",
+        "max_negatives_per_positive": 3,
+        "min_negatives_per_image": 0
+      }
+    },
+    "training": {
+      "batch_size": 8,
+      "epochs": 100,
+      "learning_rate": 0.001,
+      "momentum": 0.9,
+      "decay": 0.0005,
+      "nesterov": true,
+      "early_stopping": {
+        "enabled": true,
+        "monitor": "val_loss",
+        "min_delta": 0.0001,
+        "patience": 10,
+        "mode": "min",
+        "baseline": null,
+        "restore_best_weights": true
+      },
+      "checkpoint": {
+        "enabled": true,
+        "filepath": "./data/models/checkpoints/model.{epoch:02d}-{val_loss:.2f}.h5",
+        "monitor": "val_loss",
+        "save_best_only": true,
+        "save_weights_only": false,
+        "mode": "min",
+        "save_freq": "epoch"
+      },
+      "tensorboard": {
+        "enabled": true,
+        "log_dir": "./data/logs/tensorboard",
+        "histogram_freq": 1,
+        "write_graph": true,
+        "write_images": true,
+        "update_freq": "epoch",
+        "profile_batch": 0,
+        "embeddings_freq": 0,
+        "embeddings_metadata": null
+      },
+      "data_augmentation": {
+        "enabled": true,
+        "rotation_range": 20,
+        "width_shift_range": 0.2,
+        "height_shift_range": 0.2,
+        "shear_range": 0.2,
+        "zoom_range": 0.2,
+        "channel_shift_range": 0.2,
+        "fill_mode": "nearest",
+        "cval": 0.0,
+        "horizontal_flip": true,
+        "vertical_flip": true,
+        "rescale": null,
+        "preprocessing_function": null,
+        "data_format": "channels_last",
+        "validation_split": 0.2,
+        "dtype": "float32"
+      }
+    }
+  },
+  "label": {
+    "width": 800,
+    "height": 500,
+    "dpi": 300,
+    "background_color": [255, 255, 255],
+    "border": {
+      "width": 2,
+      "color": [0, 0, 0],
+      "radius": 10
+    },
+    "margin": 20,
+    "padding": 15,
+    "header": {
+      "height": 60,
+      "background_color": [41, 128, 185],
+      "text_color": [255, 255, 255],
+      "font_size": 24,
+      "font_bold": true,
+      "font_italic": false
+    },
+    "content": {
+      "text_color": [0, 0, 0],
+      "font_size": 14,
+      "line_spacing": 5,
+      "section_spacing": 15,
+      "font_bold": false,
+      "font_italic": false
+    },
+    "qr_code": {
+      "enabled": true,
+      "size": 150,
+      "border": 2,
+      "error_correction": "H",
+      "fill_color": [0, 0, 0],
+      "back_color": [255, 255, 255],
+      "position": "bottom_right",
+      "label": "Scan for product info"
+    },
+    "barcode": {
+      "enabled": true,
+      "type": "code128",
+      "height": 60,
+      "width": 2,
+      "text": true,
+      "text_distance": 2,
+      "font_size": 12,
+      "center_text": true,
+      "position": "bottom_left",
+      "human_readable": true
+    },
+    "footer": {
+      "enabled": true,
+      "height": 30,
+      "background_color": [236, 240, 241],
+      "text_color": [127, 140, 141],
+      "font_size": 10,
+      "text": "Generated by Smart Traceability System"
+    },
+    "fields": [
+      {
+        "type": "text",
+        "name": "product_id",
+        "label": "Product ID:",
+        "value": "{product_id}",
+        "position": [20, 100],
+        "font_size": 14,
+        "bold": true,
+        "italic": false,
+        "color": [0, 0, 0]
+      },
+      {
+        "type": "text",
+        "name": "batch_id",
+        "label": "Batch:",
+        "value": "{batch_id}",
+        "position": [20, 130],
+        "font_size": 12,
+        "bold": false,
+        "italic": false,
+        "color": [0, 0, 0]
+      },
+      {
+        "type": "text",
+        "name": "manufacturing_date",
+        "label": "Manufactured:",
+        "value": "{manufacturing_date}",
+        "position": [20, 150],
+        "font_size": 12,
+        "bold": false,
+        "italic": false,
+        "color": [0, 0, 0]
+      },
+      {
+        "type": "text",
+        "name": "rohs_compliant",
+        "label": "RoHS Compliant:",
+        "value": "{rohs_compliant}",
+        "position": [20, 170],
+        "font_size": 12,
+        "bold": false,
+        "italic": false,
+        "color": [0, 128, 0]
+      },
+      {
+        "type": "rectangle",
+        "name": "separator",
+        "position": [20, 200, 760, 2],
+        "fill": [200, 200, 200],
+        "outline": [150, 150, 150],
+        "width": 1
+      },
+      {
+        "type": "image",
+        "name": "company_logo",
+        "path": "./data/images/logo.png",
+        "position": [650, 100],
+        "size": [100, 50],
+        "keep_aspect_ratio": true
+      }
+    ]
+  },
+  "version_control": {
+    "enabled": true,
+    "auto_commit": true,
+    "auto_push": false,
+    "remote": "origin",
+    "branch": "main",
+    "user": {
+      "name": "Smart Traceability System",
+      "email": "system@example.com"
+    },
+    "commit_message": "Auto-commit: {timestamp}"
+  },
+  "notifications": {
+    "email": {
+      "enabled": false,
+      "smtp_server": "smtp.example.com",
+      "smtp_port": 587,
+      "use_tls": true,
+      "username": "user@example.com",
+      "password": "password",
+      "from_address": "noreply@example.com",
+      "to_addresses": ["admin@example.com"],
+      "subject_prefix": "[Traceability System] "
+    },
+    "slack": {
+      "enabled": false,
+      "webhook_url": "https://hooks.slack.com/services/XXX/YYY/ZZZ",
+      "channel": "#alerts",
+      "username": "Traceability Bot",
+      "icon_emoji": ":robot_face:"
+    },
+    "telegram": {
+      "enabled": false,
+      "bot_token": "123456789:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
+      "chat_id": "-123456789",
+      "parse_mode": "HTML"
+    },
+    "pushover": {
+      "enabled": false,
+      "api_token": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
+      "user_key": "abcdefghijklmnopqrstuvwxyz12",
+      "device": "iphone",
+      "priority": 0,
+      "sound": "pushover"
+    },
+    "webhook": {
+      "enabled": false,
+      "url": "https://example.com/webhook",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "X-Custom-Header": "value"
+      },
+      "template": {
+        "event": "{event}",
+        "timestamp": "{timestamp}",
+        "level": "{level}",
+        "message": "{message}",
+        "data": {data}
+      },
+      "timeout": 10,
+      "retry": {
+        "max_attempts": 3,
+        "delay": 5,
+        "backoff": 2,
+        "max_delay": 60
+      }
+    }
+  }
+}

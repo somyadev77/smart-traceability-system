@@ -1,0 +1,75 @@
+# Core Dependencies
+# Python 3.8 or higher is required
+
+# Hardware Interaction
+opencv-python>=4.5.0,<5.0.0  # Computer vision
+pyserial>=3.5,<4.0.0        # Serial communication
+RPi.GPIO>=0.7.0; sys_platform == 'linux'  # GPIO access for Raspberry Pi
+smbus2>=0.4.0; sys_platform == 'linux'    # I2C communication
+
+# AI/ML
+numpy>=1.21.0,<2.0.0
+pandas>=1.3.0,<2.0.0
+scikit-learn>=1.0.0,<2.0.0
+tensorflow>=2.6.0,<3.0.0  # or tensorflow-cpu for CPU-only
+pytesseract>=0.3.8,<0.4.0  # OCR
+opencv-python-headless>=4.5.0,<5.0.0  # Headless version for server use
+
+# Image Processing
+Pillow>=8.3.1,<11.0.0
+qrcode>=7.3.1,<8.0.0
+python-barcode>=0.14.0,<0.15.0
+imutils>=0.5.4,<0.6.0
+scikit-image>=0.18.0,<0.20.0
+
+# Web Interface
+flask>=2.0.1,<3.0.0
+flask-cors>=3.0.10,<4.0.0
+flask-socketio>=5.0.0,<6.0.0
+eventlet>=0.33.0,<0.34.0  # Required for WebSocket support
+python-engineio>=4.0.0,<5.0.0
+python-socketio>=5.0.0,<6.0.0
+
+# Database
+sqlalchemy>=1.4.0,<2.0.0
+alembic>=1.7.0,<2.0.0  # Database migrations
+
+# Configuration & Utils
+python-dotenv>=0.19.0,<0.20.0
+pyyaml>=6.0.0,<7.0.0
+jsonschema>=4.0.0,<5.0.0
+python-dateutil>=2.8.0,<3.0.0
+pytz>=2021.1,<2023.0
+pydantic>=1.8.0,<2.0.0
+
+# Logging & Monitoring
+loguru>=0.5.0,<0.7.0
+sentry-sdk>=1.0.0,<2.0.0
+prometheus-client>=0.12.0,<0.14.0
+
+# Testing
+pytest>=6.2.0,<8.0.0
+pytest-cov>=2.12.0,<4.0.0
+pytest-mock>=3.6.0,<4.0.0
+pytest-asyncio>=0.15.0,<0.20.0
+
+# Development
+black>=21.12b0,<23.0.0
+isort>=5.10.0,<6.0.0
+flake8>=4.0.0,<5.0.0
+mypy>=0.910,<1.0.0
+types-python-dateutil>=2.8.0,<3.0.0
+types-PyYAML>=6.0.0,<7.0.0
+
+# Documentation
+sphinx>=4.2.0,<6.0.0
+sphinx-rtd-theme>=1.0.0,<2.0.0
+sphinx-autodoc-typehints>=1.12.0,<2.0.0
+
+# Optional Dependencies (for specific hardware/features)
+python-escpos>=2.2.0,<3.0.0; platform_system != 'Windows'  # For thermal printers
+paho-mqtt>=1.6.0,<2.0.0  # For MQTT support
+pymongo>=4.0.0,<5.0.0  # For MongoDB support
+psycopg2-binary>=2.9.0,<3.0.0  # For PostgreSQL support
+pymssql>=2.2.0,<3.0.0  # For Microsoft SQL Server support
+pymysql>=1.0.0,<2.0.0  # For MySQL support
